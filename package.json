@@ -1,0 +1,27 @@
+{
+  "name": "whatsapp-api",
+  "version": "2.0.0",
+  "description": "Whatsapp API",
+  "main": "node ./lib/index.js",
+  "scripts": {
+    "start": "node ./lib/index.js",
+    "test": "eslint ."
+  },
+  "author": "Muunatic",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/node": "^17.0.2",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.15.3"
+  },
+  "engines": {
+    "node": ">=16.13.1",
+    "npm": ">=8.3.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0",
+    "typescript": "^4.5.4"
+  }
+}
