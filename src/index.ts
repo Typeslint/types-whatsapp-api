@@ -68,7 +68,7 @@ client.on('message', async msg => {
         if (!data) return msg.reply(DEFAULT_ERROR);
         if (!data.pp.rank || !data.accuracy === null) return msg.reply(DEFAULT_ERROR);
         const resp = 'Name: ' + data.name + '\n\n' + 'Rank: ' + data.pp.rank + '\n\n' + 'Level: ' + data.level + '\n\n' + 'Accuracy: ' + data.accuracy + '\n\n' + 'Joined: ' + data.raw_joinDate + '\n\n' + 'Performance Point: ' + data.pp.raw + '\n\n' + 'URL: ' + `https://osu.ppy.sh/users/${data.id}`;
-        const media = await whatsapp.MessageMedia.fromUrl(`https://a.ppy.sh/${data.id}`);
+        const media = await whatsapp.MessageMedia.fromUrl(`https://a.ppy.sh/${data.id}`, {unsafeMime: true});
         await msg.reply(media);
         await msg.reply(resp);
         console.info(msg.body);
@@ -83,7 +83,8 @@ client.on('message', async msg => {
         const resp2 = 'Title: ' + animescraper.title + '\n\n' + 'Type: ' + animescraper.type + '\n\n' + 'Episode: ' + animescraper.episodes + '\n\n' + 'Duration: ' + animescraper.duration + '\n\n' + 'Genres: ' + animescraper.genres?.join(', ') + '\n\n' + 'Status: ' + animescraper.status + '\n\n' + 'Score: ' + animescraper.score;
         const media = await whatsapp.MessageMedia.fromUrl(animescraper.picture || '');
         await msg.reply(media);
-        await msg.reply(resp + '\n\n' + resp2);
+        await msg.reply(resp);
+        await msg.reply(resp2);
         console.info(msg.body);
     }
 
