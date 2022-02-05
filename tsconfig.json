@@ -16,6 +16,7 @@
       "strictNullChecks": true, 
       "strictFunctionTypes": true,
       "strictBindCallApply": true,
+      "allowSyntheticDefaultImports": true,
       "alwaysStrict": true,
       "forceConsistentCasingInFileNames": true
     },
