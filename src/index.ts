@@ -14,11 +14,11 @@ process.on('unhandledRejection', error => {
 });
 
 process.on('uncaughtException', error => {
-    console.error('uncaughtException:', error)
+    console.error('uncaughtException:', error);
 });
 
 process.on('uncaughtExceptionMonitor', error => {
-    console.error('uncaughtExceptionMonitor:', error)
+    console.error('uncaughtExceptionMonitor:', error);
 });
 
 const SESSION_FILE_PATH = '../whatsapplogin.json';
