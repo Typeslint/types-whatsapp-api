@@ -1,11 +1,11 @@
 {
   "name": "whatsapp-api",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Whatsapp API",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node ./lib/index.js",
+    "start": "node ./dist/index.js",
     "test": "eslint .",
     "lint": "npx eslint /**",
     "lint:fix": "npx eslint --fix"
