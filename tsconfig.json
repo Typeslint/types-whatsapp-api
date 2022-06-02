@@ -2,10 +2,10 @@
     "compilerOptions": {
       "module": "commonjs",
       "target": "ES2021",
-      "outDir": "lib",
+      "outDir": "dist",
       "lib": [
           "ES2021",
-          "dom" // Required for console.log()
+          "DOM"
       ],
       "allowJs": false,
       "sourceMap": false,
