@@ -3,3 +3,6 @@ node_modules/
 
 # Readme
 README.MD
+
+# auth
+.wwebjs_auth
