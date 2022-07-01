@@ -1,4 +1,3 @@
-import fs = require('fs');
 import whatsapp = require('whatsapp-web.js');
 import malScraper = require('mal-scraper');
 import osu = require('node-osu');
@@ -21,36 +20,51 @@ process.on('uncaughtExceptionMonitor', error => {
     console.error('uncaughtExceptionMonitor:', error);
 });
 
-const SESSION_FILE_PATH = '../whatsapplogin.json';
-let sessionCfg;
-if (fs.existsSync(SESSION_FILE_PATH)) {
-    sessionCfg = require(SESSION_FILE_PATH);
-}
-
-const client = new whatsapp.Client({ puppeteer: { headless: false }, session: sessionCfg });
+const client = new whatsapp.Client({ 
+    puppeteer: {
+        executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        headless: false,
+        args: [
+            '--no-sandbox',
+            '--disable-gpu'
+        ]
+    }, 
+    authStrategy: new whatsapp.LocalAuth(),
+    qrMaxRetries: 1,
+    takeoverTimeoutMs: 60000,
+    authTimeoutMs: 60000
+});
 
 client.on('qr', (qr) => {
     console.log('QR RECEIVED', qr);
 });
 
-client.on('authenticated', (session) => {
-    console.log('AUTHENTICATED', session);
-    sessionCfg=session;
-    fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
-        if (err) {
-            console.error(err);
-        }
-    });
+client.on('authenticated', () => {
+    console.log('AUTHENTICATED');
 });
+
+client.on('auth_failure', (err) => {
+    console.error(err);
+})
+
+client.on('disconnected', () => {
+    console.log('Client Disconnected');
+})
 
 client.on('ready', () => {
     console.log('Client Connected');
+    setInterval(() => {
+        console.log('Pong!')
+    }, 5000);
 });
 
-client.on('message', async msg => {
+client.on('message', async (msg) => {
 
     const args = msg.body.slice(prefix.length).trim().split(/ +/);
     const command = args.shift()?.toLowerCase();
+
+    const chat = await msg.getChat();
+    if (chat.isGroup) return;
 
     const a = 'foo';
     const b = 'bar';
